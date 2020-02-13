@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 app_name = 'rango'
+LOGIN_URL = 'rango:login'
 urlpatterns = [
 
        path('', views.index, name='index'),
@@ -15,9 +16,10 @@ urlpatterns = [
        path('add_category/', views.add_category, name='add_category'), 
        path('add_page/', views.add_page, name='add_page'), 
        path('register/', views.register, name='register'), # New mapping!
+       path('login/', views.user_login, name='login'),
+       path('restricted/', views.restricted, name='restricted'),
+       path('logout/', views.user_logout, name='logout'),
 
-
-path('', views.index, name='index'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

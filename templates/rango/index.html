@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPEhtml>
 {%load staticfiles%} 
 <html>
@@ -8,7 +8,13 @@
 <body>
 <h1>Rango says...</h1> 
 <div>
-hey there partner! <br/> 
+
+{% if user.is_authenticated %} 
+    howdy {{ user.username }}!
+{% else %}
+    hey there partner!
+{% endif %}
+<br/> 
 <strong>{{ boldmessage }}</strong><br/>
 </div>
 <h2>Most Liked Categories</h2> 
@@ -17,6 +23,10 @@ hey there partner! <br/>
 {% if categories %}
 <ul>
 {% for category in categories %}
+<div>
+<a href="/rango/about/">About</a><br /> <img src="{% static 'images/rango.jpg' %}"
+alt="Picture of Rango" /> <!-- New line -->
+</div> 
 <li><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
 </li> 
 {% endfor %}
@@ -40,22 +50,6 @@ hey there partner! <br/>
 alt="Picture of Rango" />
 <a href="/rango/add_category/">Add a New Category</a><br />
 <a href="/rango/add_page/">Add a New Page</a><br />
-
-=======
-<!DOCTYPE html>
-<html> 
-<head> 
-<title>Rango</title> 
-</head> 
-<body>
-<h1>Rango says...</h1> 
-<div> 
-hey there partner! <br /> 
-<strong>{{ boldmessage }}</strong><br />
-<div>
-<a href="/rango/about/">About</a><br /> 
-<img src="/static/images/rango.jpg" alt="Picture of Rango" />
->>>>>>> ca60b9de29d027095210750743e1411ac002428b
 </div> 
 </body>
 </html>
